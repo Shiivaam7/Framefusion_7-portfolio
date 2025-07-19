@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FrameFusion_7 | Video Editor & Creator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Animated Gradient Background */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(120deg, #020506, #0d0048, #d28e56, #65ca8f);
+      background-size: 400% 400%;
+      animation: gradientBG 18s ease infinite;
+      color: #f5f5f5;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    a { color: #00fff0; text-decoration: none; transition: color 0.2s;}
+    a:hover { color: #ffb6ff; }
+
+    /* Header with Glassmorphism & Neon Glow */
+    header {
+      background: rgba(10,10,20,0.7);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 30px;
+      margin: 40px auto 30px auto;
+      padding: 40px 20px;
+      max-width: 900px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      position: relative;
+      animation: fadeInDown 1.2s cubic-bezier(.77,0,.18,1) 0.1s both;
+    }
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-60px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #00fff0;
+      box-shadow: 0 0 30px #00fff088, 0 0 0 #fff0;
+      animation: neonPulse 2.5s infinite alternate;
+      background: #222;
+      transition: transform 0.3s cubic-bezier(.77,0,.18,1), box-shadow 0.3s;
+    }
+    @keyframes neonPulse {
+      0% { box-shadow: 0 0 30px #00fff088, 0 0 0 #fff0;}
+      100% { box-shadow: 0 0 60px #00fff0cc, 0 0 0 #fff0;}
+    }
+    header .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 0;
+    }
+    header h1 {
+      font-size: 1.8em;
+      margin-bottom: 0;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 0 12px #00fff0cc;
+      letter-spacing: 2px;
+      text-align: center;
+      position: relative;
+      animation: fadeIn 1.5s 0.2s both;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    header p {
+      font-size: 1.2em;
+      color: #b2fefa;
+      text-align: center;
+      margin-top: 10px;
+      letter-spacing: 1px;
+      animation: fadeIn 1.5s 0.4s both;
+    }
+
+    /* Profile Section */
+    .profile-section {
+      padding: 30px;
+      background: rgba(26,26,26,0.7);
+      border-radius: 24px;
+      margin: 0 auto 30px auto;
+      max-width: 900px;
+      box-shadow: 0 4px 24px #00fff022;
+      animation: fadeInUp 1.2s 0.3s both;
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(60px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    .profile-bio {
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 18px 28px;
+      border-radius: 18px;
+      background: rgba(34,34,44,0.65);
+      box-shadow: 0 2px 16px #b28dff22;
+      transition: transform 0.3s cubic-bezier(.77,0,.18,1), box-shadow 0.3s;
+      width: auto;
+      text-align: center;
+    }
+    .profile-bio:hover {
+      transform: scale(1.04) translateY(-6px) rotate(-1deg);
+      box-shadow: 0 8px 32px #00fff055, 0 0 0 4px #b2b2b2;
+    }
+    .profile-bio h2 {
+      margin-bottom: 20px;
+      font-size: 2.2em;
+      color: #ffb6ff;
+      text-shadow: 0 0 8px #b28dff88;
+      letter-spacing: 1px;
+      position: relative;
+      display: inline-block;
+      animation: underlineAnim 1.2s 0.5s both;
+    }
+    @keyframes underlineAnim {
+      0% { background-size: 0 7px;}
+      100% { background-size: 100% 7px;}
+    }
+    .profile-bio h2::after {
+      content: '';
+      display: block;
+      width: 90px;
+      height: 7px;
+      margin: 10px auto 0 auto;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #ffb6ff 0%, #b28dff 100%);
+      box-shadow: 0 0 16px #b28dff99;
+      animation: growUnderline 1.2s 0.5s both;
+    }
+    @keyframes growUnderline {
+      0% { width: 0;}
+      100% { width: 90px;}
+    }
+    .profile-bio p { margin-bottom: 30px; font-size: 1.15em; color: #e0e0e0;}
+
+    /* Social Buttons */
+    .social-buttons {
+      margin-top: 30px;
+      padding: 24px 24px 18px 24px;
+      background: rgba(34,34,44,0.8);
+      border-radius: 16px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 2px 16px #00fff022;
+      animation: fadeInUp 1.2s 0.5s both;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    .social-buttons h3 {
+      margin-bottom: 20px;
+      color: #00fff0;
+      font-size: 1.3em;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px #00fff088;
+      text-align: center; /* Center the "Connect With Me" heading */
+      width: 100%;
+    }
+    .follow-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .follow-buttons li {
+      margin: 0;
+      padding: 0;
+    }
+    .follow-buttons a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: linear-gradient(90deg, #00fff0 0%, #b28dff 100%);
+      color: #222;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 1.1em;
+      box-shadow: 0 2px 12px #00fff044;
+      border: none;
+      outline: none;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(.77,0,.18,1), box-shadow 0.3s;
+      animation: socialPulse 2s infinite alternate;
+    }
+    @keyframes socialPulse {
+      0% { box-shadow: 0 2px 12px #00fff044;}
+      100% { box-shadow: 0 4px 24px #ffb6ff55;}
+    }
+    .follow-buttons a:hover {
+      background: linear-gradient(90deg, #ffb6ff 0%, #00fff0 100%);
+      color: #fff;
+      transform: scale(1.07) rotate(-1deg);
+      box-shadow: 0 8px 32px #ffb6ff88;
+    }
+
+    .follow-buttons .icon {
+      font-size: 1.3em;
+      transition: transform 0.3s;
+    }
+    .follow-buttons a:hover .icon {
+      transform: scale(1.2) rotate(8deg);
+    }
+
+    /* Action Buttons Section */
+    .action-buttons-section {
+      max-width: 700px;
+      margin: 32px auto 0 auto; /* Reduced top margin for less gap above */
+      display: flex;
+      flex-direction: column;
+      gap: 18px; /* Consistent gap between action buttons */
+      align-items: center;
+      animation: fadeInUp 1.2s 0.7s both;
+    }
+    .action-btn {
+      display: block;
+      width: 100%;
+      padding: 22px 0;
+      background: linear-gradient(90deg, #f3f7fa 0%, #b28dff 100%);
+      color: #222;
+      font-size: 1.25em;
+      font-weight: 700;
+      border: none;
+      border-radius: 16px;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 2px 8px #b28dff33;
+      transition: background 0.2s, color 0.2s, transform 0.1s;
+      position: relative;
+      overflow: hidden;
+    }
+    .action-btn:hover {
+      background: linear-gradient(90deg, #00fff0 0%, #ffb6ff 100%);
+      color: #fff;
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 4px 24px #00fff055;
+    }
+
+    /* Grid Cards with Animation */
+    section { padding: 50px 20px; max-width: 1000px; margin: auto; }
+    h2 { font-size: 2em; margin-bottom: 20px; color: #fff; letter-spacing: 1px;}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: rgba(34,34,44,0.85);
+      border-radius: 18px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 2px 16px #00fff022;
+      transform: translateY(40px);
+      opacity: 0;
+      animation: cardFadeIn 1.1s cubic-bezier(.77,0,.18,1) forwards;
+    }
+    .card:nth-child(1) { animation-delay: 0.2s;}
+    .card:nth-child(2) { animation-delay: 0.4s;}
+    .card:nth-child(3) { animation-delay: 0.6s;}
+    @keyframes cardFadeIn {
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      filter: grayscale(0.2) brightness(0.95);
+      transition: filter 0.3s;
+    }
+    .card:hover img {
+      filter: grayscale(0) brightness(1.1) drop-shadow(0 0 16px #00fff088);
+    }
+    .card a {
+      display: block;
+      padding: 12px;
+      background: linear-gradient(90deg, #00fff0 0%, #b28dff 100%);
+      color: #222;
+      font-weight: bold;
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .card a:hover {
+      background: linear-gradient(90deg, #ffb6ff 0%, #00fff0 100%);
+      color: #fff;
+    }
+
+    /* Glass Contact Section */
+    .glass-contact-section {
+      max-width: 420px;
+      margin: 48px auto 0 auto;
+      background: rgba(30, 30, 30, 0.85);
+      border-radius: 28px;
+      box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 32px 18px 32px 18px;
+      text-align: center;
+      position: relative;
+      animation: fadeInUp 1.2s 1s both;
+      border: 2px solid #b28dff44;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .glass-contact-section:hover {
+      box-shadow: 0 8px 40px #00fff055, 0 0 0 4px #b28dff88;
+      transform: scale(1.025);
+    }
+    .glass-contact-title {
+      font-size: 2em;
+      font-weight: 700;
+      color: #f8d6d6;
+      margin-bottom: 0.2em;
+      letter-spacing: 1px;
+      text-shadow: 0 0 12px #ffb6ffcc;
+      animation: fadeIn 1.1s 0.2s both;
+    }
+    .glass-contact-underline {
+      width: 70px;
+      height: 5px;
+      margin: 0 auto 24px auto;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #ffb6ff 0%, #b28dff 100%);
+      box-shadow: 0 0 10px #b28dff99;
+      animation: growUnderline 1.2s 1.2s both;
+    }
+    .glass-contact-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .glass-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 210px;
+      padding: 13px 0;
+      background: linear-gradient(90deg, #fff 0%, #b28dff 100%);
+      color: #222;
+      font-size: 1.08em;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 2px 8px #b28dff33;
+      transition: background 0.2s, color 0.2s, transform 0.1s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.8s both;
+    }
+    .glass-btn:hover {
+      background: linear-gradient(90deg, #00fff0 0%, #ffb6ff 100%);
+      color: #fff;
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 4px 24px #00fff055;
+    }
+    .glass-btn-icon {
+      font-size: 1.2em;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(0,0,0,0.7);
+      text-align: center;
+      padding: 14px 10px;
+      color: #b28dff;
+      font-size: 1em;
+      letter-spacing: 1px;
+      border-radius: 16px 16px 0 0;
+      margin: 32px auto 0 auto;
+      max-width: 340px;
+      box-shadow: 0 2px 16px #b28dff22;
+      animation: fadeInUp 1.2s 1.2s both;
+    }
+
+    /* Video Gallery Styles */
+    .video-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    .video-preview {
+      background: rgba(34,34,44,0.85);
+      border-radius: 18px;
+      box-shadow: 0 2px 16px #00fff022;
+      padding: 16px 8px 12px 8px;
+      text-align: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .video-preview:hover {
+      transform: scale(1.03) translateY(-4px);
+      box-shadow: 0 8px 32px #00fff055;
+    }
+    .video-preview video {
+      width: 100%;
+      height: 570px;
+      aspect-ratio: 9/16; /* Instagram Reel ratio */
+      border-radius: 10px;
+      object-fit: cover;
+      background: #000;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 8px #b28dff33;
+      transition: transform 0.3s ease, box-shadow 0.3s;
+    }
+    .video-preview:hover video {
+      transform: scale(1.04);
+      box-shadow: 0 8px 32px #00fff055;
+    }
+    .video-title {
+      color: #ffb6ff;
+      font-weight: 600;
+      font-size: 1.08em;
+      margin-top: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      header, .profile-section, .glass-contact-section, footer { max-width: 98vw;}
+    }
+    @media (max-width: 700px) {
+      header { flex-direction: column; gap: 10px; padding: 30px 5px;}
+      .profile-section, .glass-contact-section { padding: 20px 5px;}
+      .action-buttons-section { max-width: 98vw;}
+    }
+    @media (max-width: 500px) {
+      .glass-btn, .action-btn { width: 100%; }
+      .glass-contact-section { padding: 18px 2px 18px 2px; }
+      .profile-section { padding: 10px 2px;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="profile-header">
+      <img src="122.jpg" alt="FrameFusion_7 Profile Picture" class="profile-pic-top">
+      <h1>FrameFusion_7</h1>
+    </div>
+    <p>Cinematic Editor | After Effects Educator | Creator</p>
+  </header>
+
+  <section class="profile-section">
+    <h2>Hi, I'm Shivam</h2>
+    <p>
+      I am a coder and web developer with editing skills. I create high-quality cinematic video edits using After Effects and share free tutorials to help others grow. Let's work together to bring your vision to life.
+    </p>
+  </section>
+
+  <section class="social-buttons">
+    <h3>Connect With Me</h3>
+    <ul class="follow-buttons">
+      <li><a href="https://instagram.com/framefusion_7" target="_blank" rel="noopener"><span class="icon">📸</span> Instagram</a></li>
+      <li><a href="https://github.com/yourgithub" target="_blank" rel="noopener"><span class="icon">💻</span> GitHub</a></li>
+      <li><a href="https://linkedin.com/in/yourlinkedin" target="_blank" rel="noopener"><span class="icon">🔗</span> LinkedIn</a></li>
+    </ul>
+  </section>
+
+  <section class="action-buttons-section">
+    <a class="action-btn" href="#top-edits">Watch My Top Edits</a>
+    <a class="action-btn" href="https://github.com/yourgithub" target="_blank" rel="noopener">GitHub Account for Free Coding Material</a>
+    <a class="action-btn" href="#projects">My Projects</a>
+    <a class="action-btn" href="#tutorials">Tutorials</a>
+    <a class="action-btn" href="#cc-topaz-settings">My CC + Topaz Setting</a>
+    <a class="action-btn" href="#contact-me-section">Contact Me</a>
+  </section>
+
+  <!-- Top Edits Section -->
+  <section id="top-edits">
+    <h2>Top Edits</h2>
+    <div class="video-gallery">
+      <div class="video-preview">
+        <video src="01.mp4" controls poster="edit1.jpg"></video>
+        <div class="video-title">Top Edit 1</div>
+      </div>
+      <div class="video-preview">
+        <video src="05.mp4" controls poster="edit2.jpg"></video>
+        <div class="video-title">Top Edit 2</div>
+      </div>
+      <div class="video-preview">
+        <video src="IMG_1984.MP4" controls poster="edit2.jpg"></video>
+        <div class="video-title">Top Edit 2</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tutorials Section -->
+  <section id="tutorials">
+    <h2>After Effects Tutorials</h2>
+    <div class="video-gallery">
+      <div class="video-preview">
+        <video src="IMG_2591.mp4" controls poster="tutorial1.jpg"></video>
+        <div class="video-title">Tutorial 1</div>
+      </div>
+      <div class="video-preview">
+        <video src="03.mp4" controls poster="tutorial2.jpg"></video>
+        <div class="video-title">Tutorial 2</div>
+      </div>
+      <div class="video-preview">
+        <video src="02.mp4" controls poster="tutorial3.jpg"></video>
+        <div class="video-title">Tutorial 3</div>
+    </div>
+  </section>
+
+  <!-- My Projects Section -->
+  <section id="projects">
+    <h2>My Projects</h2>
+    <div class="video-gallery">
+      <div class="video-preview">
+        <video src="IMG_1470.mp4" controls poster="project1.jpg"></video>
+        <div class="video-title">Project 1</div>
+      </div>
+      <div class="video-preview">
+        <video src="IMG_1492.mp4" controls poster="project2.jpg"></video>
+        <div class="video-title">Project 2</div>
+
+       
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact-me-section" class="glass-contact-section">
+    <h2 class="glass-contact-title">Contact Me</h2>
+    <div class="glass-contact-underline"></div>
+    <div class="glass-contact-btns">
+      <a class="glass-btn" href="shivamraj)k0r@gmail.com" target="_blank" rel="noopener">
+        <span class="glass-btn-icon">📧</span> Email
+      </a>
+      <a class="glass-btn" href="https://wa.me/9097925538" target="_blank" rel="noopener">
+        <span class="glass-btn-icon">💬</span> WhatsApp Me
+      </a>
+      <a class="glass-btn" href="tel:+9097925538" target="_blank" rel="noopener">
+        <span class="glass-btn-icon">📞</span> For any query
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 FrameFusion_7.|| Devloped by shivam kuamr </p>
+  </footer>
+
+  <script>
+  // Auto play/pause videos on hover, only one plays at a time
+  document.addEventListener("DOMContentLoaded", function () {
+    const videos = document.querySelectorAll('.video-preview video');
+    let playing = null;
+
+    videos.forEach(video => {
+      video.addEventListener('mouseenter', () => {
+        // Pause any other playing video
+        if (playing && playing !== video) {
+          playing.pause();
+          playing.currentTime = 0;
+        }
+        video.play();
+        playing = video;
+      });
+
+      video.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+        if (playing === video) playing = null;
+      });
+    });
+  });
+  </script>
+</body>
+</html>
